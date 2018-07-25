@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">POS</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="login">LOGIN</string>
+    <string name="register">Not registered yet? <u>REGISTER</u></string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="_continue">continue</string>
+    <string name="terms">By Joining inStore,I agree to <u> Trems &amp; Conditions.</u></string>
+    <string name="already">Already have an account?<u>LOG IN</u></string>
+</resources>
