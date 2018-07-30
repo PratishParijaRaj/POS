@@ -20,17 +20,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pratishparija.pos.models.UserRole;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends AppCompatActivity {
+
     @BindView(R.id.email)
     EditText email;
     @BindView(R.id.password)
@@ -86,12 +89,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     @OnClick(R.id.login)
     public void onViewClicked() {
-        registerUser();
+        Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
+//        registerUser();
     }
 
     private void registerUser() {
-        String emailId = email.getText().toString().trim();
-        String userPassword = password.getText().toString().trim();
+        final String emailId = email.getText().toString().trim();
+        final String userPassword = password.getText().toString().trim();
         String userConfirmPassword = connfirmPassword.getText().toString().trim();
         if (TextUtils.isEmpty(emailId)) {
             email.setError("Enter EmaiId");
@@ -117,6 +121,8 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            UserRole role = new UserRole();
+                            updateUser(role);
                             progressDialog.dismiss();
                             Toast.makeText(RegisterActivity.this, "Registered Successfully...", Toast.LENGTH_SHORT).show();
 
@@ -126,5 +132,16 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void updateUser(UserRole role) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference("user").setValue(role).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(RegisterActivity.this, task.isSuccessful() ? "Success" : "Failed", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
     }
 }

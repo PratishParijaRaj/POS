@@ -19,10 +19,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pratishparija.pos.activity.SetupProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthActionCodeException;
 import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
@@ -75,8 +77,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        btnLogin.setText("Sign ewsafkjweasj");
+//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+//        btnLogin.setText("Sign ewsafkjweasj");
 
     }
 
@@ -106,11 +108,13 @@ public class LoginActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                loginUser();
+//                loginUser();
+                Intent intent = new Intent(LoginActivity.this, SetupProfile.class);
+                startActivity(intent);
                 break;
             case R.id.tv_forgot_password:
-                firebaseAuth.signOut();
-                btnLogin.setText("Sign Out");
+//                firebaseAuth.signOut();
+//                btnLogin.setText("Sign Out");
                 break;
         }
     }

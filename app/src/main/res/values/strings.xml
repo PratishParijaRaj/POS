@@ -9,4 +9,6 @@
     <string name="_continue">continue</string>
     <string name="terms">By Joining inStore,I agree to <u> Trems &amp; Conditions.</u></string>
     <string name="already">Already have an account?<u>LOG IN</u></string>
+    <string name="great">Great! We need to setup your profile now.</string>
+    <string name="setup_profile">Setup profile</string>
 </resources>
