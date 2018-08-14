@@ -1,8 +1,15 @@
 package com.example.pratishparija.pos.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import java.util.Date;
 
+@Entity(tableName = "tenantProfile_table")
 public class TenantProfile {
+    @NonNull
+    @PrimaryKey
     private String uid;
     private String addressLine1;
     private String addressLine2;
@@ -18,7 +25,7 @@ public class TenantProfile {
     private String state;
     private String street;
     private String userName;
-    private Double zipcode;
+    private String zipcode;
     private String password;
 
     public TenantProfile() {
@@ -160,11 +167,11 @@ public class TenantProfile {
         this.userName = userName;
     }
 
-    public Double getZipcode() {
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(Double zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 }

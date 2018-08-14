@@ -1,4 +1,4 @@
-package com.example.pratishparija.pos.database;
+package com.example.pratishparija.pos.services;
 
 import android.app.Activity;
 import android.os.Build;
@@ -46,15 +46,14 @@ public class FirebaseAuthenticationService implements Executor {
         if (tenant != null) {
 
             try {
-                TenantProfile tenantProfile = new TenantProfile();
-//                String email = tenantProfile.getEmail();
-                String email = "pparijaraj1996@gmail.com";
-                String password = "123456789";
+                String email = tenant.getEmail();
+                String password = tenant.getPassword();
 
-                createNewUserWithEmailAndPassword(email, password, tenantProfile);
+
+                createNewUserWithEmailAndPassword(email, password, tenant);
             } catch (final Exception e) {
 
-                if (mCallback instanceof Activity) {
+                {
                     ((Activity) mCallback).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -212,7 +211,7 @@ public class FirebaseAuthenticationService implements Executor {
                 });
     }
 
-    private void signInUserWithEmailAndPassword(String email, String password) {
+    private void signInUserWithEmailAndPassword(final String email, String password) {
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -221,12 +220,16 @@ public class FirebaseAuthenticationService implements Executor {
 
                         if (task.isSuccessful()) {
 
+                            Log.d(TAG, "signin success");
                             if (mCallback instanceof Activity) {
                                 ((Activity) mCallback).runOnUiThread(new Runnable() {
-                                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                                    //@RequiresApi(api = Build.VERSION_CODES.KITKAT)
                                     @Override
                                     public void run() {
-                                        mCallback.onSuccess(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+                                        Log.d(TAG, "signin success again");
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                            mCallback.onSuccess(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+                                        }
                                     }
                                 });
                             }
@@ -245,18 +248,19 @@ public class FirebaseAuthenticationService implements Executor {
     }
 
     public void authenticateExistingTenantWithEmailAndPassword(TenantProfile tenant) {
-
+//        mAuth.signOut();
         //Check if user is signed in (non-null) and update UI accordingly.
         final FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
         if (currentUser == null) {
 
             if (tenant != null) {
 
                 try {
-                    TenantProfile tenantProfile = new TenantProfile();
-                    String email = tenantProfile.getEmail();
-                    String password = tenantProfile.getPassword();
+//                    TenantProfile tenantProfile = new TenantProfile();
+                    String email = tenant.getEmail();
+                    String password = tenant.getPassword();
 
                     signInUserWithEmailAndPassword(email, password);
                 } catch (final Exception e) {
@@ -282,6 +286,10 @@ public class FirebaseAuthenticationService implements Executor {
                 });
             }
         }
+    }
+
+    public void signOut() {
+        mAuth.signOut();
     }
 
     @Override

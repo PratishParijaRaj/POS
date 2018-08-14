@@ -1,6 +1,13 @@
 package com.example.pratishparija.pos.models;
 
-public class Price {
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "price_table")
+public class PriceTable {
+    @NonNull
+    @PrimaryKey
     private String priceId;
     private String createdDate;
     private String createdBy;
@@ -13,7 +20,7 @@ public class Price {
     private String tax;
     private String priceRuleId;
 
-    public Price() {
+    public PriceTable() {
     }
 
     public String getPriceId() {

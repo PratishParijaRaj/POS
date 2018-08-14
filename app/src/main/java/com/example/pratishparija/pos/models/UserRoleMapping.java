@@ -1,10 +1,16 @@
 package com.example.pratishparija.pos.models;
 
-public class UserRoleMapping {
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
+@Entity(tableName = "userRoleMapping_table")
+public class UserRoleMapping {
+    @NonNull
+    @PrimaryKey
+    private String id;
     private String userId;
     private String roleId;
-    private String id;
 
     public UserRoleMapping() {
     }

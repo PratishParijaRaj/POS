@@ -1,14 +1,20 @@
 package com.example.pratishparija.pos.models;
 
-public class Product {
-    //PrimaryKey
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "product_table")
+public class ProductTable {
+    @NonNull
+    @PrimaryKey
     private String pid;
     private String pName;
     private String pDescription;
     private String productId;
-    private String createdOn;
+    private Long createdOn;
     private String createdBy;
-    private String lastModifiedDate;
+    private Long lastModifiedDate;
     private String lastModifiedBy;
     private String validFrom;
     private String valiThrough;
@@ -27,14 +33,15 @@ public class Product {
     private String isReturnable;
     private String[] pPicture;
 
-    public Product() {
+    public ProductTable() {
     }
 
+    @NonNull
     public String getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
+    public void setPid(@NonNull String pid) {
         this.pid = pid;
     }
 
@@ -62,11 +69,11 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getCreatedOn() {
+    public Long getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(String createdOn) {
+    public void setCreatedOn(Long createdOn) {
         this.createdOn = createdOn;
     }
 
@@ -78,11 +85,11 @@ public class Product {
         this.createdBy = createdBy;
     }
 
-    public String getLastModifiedDate() {
+    public Long getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(String lastModifiedDate) {
+    public void setLastModifiedDate(Long lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 

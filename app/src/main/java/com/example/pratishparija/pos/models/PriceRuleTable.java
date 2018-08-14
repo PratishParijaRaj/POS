@@ -1,6 +1,13 @@
 package com.example.pratishparija.pos.models;
 
-public class PriceRule {
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "price_rule_table")
+public class PriceRuleTable {
+    @NonNull
+    @PrimaryKey
     private String priceRuleId;
     private String priceValue;
     private String validFrom;
@@ -10,7 +17,7 @@ public class PriceRule {
     private String lastModifiedDate;
     private String lastModifiedBy;
 
-    public PriceRule() {
+    public PriceRuleTable() {
     }
 
     public String getPriceRuleId() {

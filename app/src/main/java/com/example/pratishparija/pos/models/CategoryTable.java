@@ -1,42 +1,58 @@
 package com.example.pratishparija.pos.models;
 
-public class CatalogModel {
-    private String id;
-    private String catalogName;
-    private String createdDate;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "category_table")
+public class CategoryTable {
+    @NonNull
+    @PrimaryKey
+    private String cId;
+    private String catalogId;
+    private String categoryName;
+    private Long createdDate;
     private String createdBy;
-    private String lastModifiedDate;
+    private Long lastModifiedDate;
     private String lastModifiedBy;
     private String image;
     private String description;
     private String validFrom;
     private String validThrough;
 
-
-    public CatalogModel() {
+    public CategoryTable() {
     }
 
-    public String getId() {
-        return id;
+    @NonNull
+    public String getcId() {
+        return cId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setcId(@NonNull String cId) {
+        this.cId = cId;
     }
 
-    public String getCatalogName() {
-        return catalogName;
+    public String getCatalogId() {
+        return catalogId;
     }
 
-    public void setCatalogName(String catalogName) {
-        this.catalogName = catalogName;
+    public void setCatalogId(String catalogId) {
+        this.catalogId = catalogId;
     }
 
-    public String getCreatedDate() {
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public Long getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(String createdDate) {
+    public void setCreatedDate(Long createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -48,11 +64,11 @@ public class CatalogModel {
         this.createdBy = createdBy;
     }
 
-    public String getLastModifiedDate() {
+    public Long getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(String lastModifiedDate) {
+    public void setLastModifiedDate(Long lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 

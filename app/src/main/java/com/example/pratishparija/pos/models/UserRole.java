@@ -1,11 +1,16 @@
 package com.example.pratishparija.pos.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+@Entity(tableName = "userRole_table")
 public class UserRole {
     public static final String ROLE_SUPER_ADMIN = "superAdmin";
     public static final String ROLE_STORE_MANAGER = "storeManager";
     public static final String ROLE_SALES_EXECUTIVE = "salesExecutive";
     public static final String ROLE_ADMIN = "admin";
-
+    @NonNull
+    @PrimaryKey
     private String roleId;
     private String description;
     private String type;
